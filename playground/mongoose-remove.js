@@ -1,34 +1,20 @@
-// const MongoClient = require('mongodb').MongoClient;
-const {MongoClient, ObjectID} = require('mongodb');
+const {ObjectID} = require('mongodb');
 
-MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
-  if (err) {
-    return console.log('Unable to connect to MongoDB server');
-  }
-  console.log('Connected to MongoDB server');
+const {mongoose} = require('./../server/db/mongoose');
+const {Todo} = require('./../server/models/todo');
+const {User} = require('./../server/models/user');
 
-  // deleteMany
-  // db.collection('Todos').deleteMany({text: 'Eat lunch'}).then((result) => {
-  //   console.log(result);
-  // });
+// Todo.remove({}).then((result) => {
+//   console.log(result);
+// });
 
-  // deleteOne
-  // db.collection('Todos').deleteOne({text: 'Eat lunch'}).then((result) => {
-  //   console.log(result);
-  // });
+// Todo.findOneAndRemove
+// Todo.findByIdAndRemove
 
-  // findOneAndDelete
-  // db.collection('Todos').findOneAndDelete({completed: false}).then((result) => {
-  //   console.log(result);
-  // });
+// Todo.findOneAndRemove({_id: '57c4610dbb35fcbf6fda1154'}).then((todo) => {
+//
+// });
 
-  // db.collection('Users').deleteMany({name: 'Andrew'});
-
-  db.collection('Users').findOneAndDelete({
-    _id: new ObjectID("57ac8d47878a299e5dc21bc8")
-  }).then((results) => {
-    console.log(JSON.stringify(results, undefined, 2));
-  });
-
-  // db.close();
+Todo.findByIdAndRemove('57c4610dbb35fcbf6fda1154').then((todo) => {
+  console.log(todo);
 });
